@@ -49,7 +49,7 @@ public class ExampleDelegate extends LatteDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-
+                        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .failure(new IFailure() {

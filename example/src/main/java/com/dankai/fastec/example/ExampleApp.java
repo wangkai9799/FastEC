@@ -12,6 +12,7 @@ import android.app.Application;
 
 import com.dankai.latte.app.Latte;
 import com.dankai.latte.ec.icon.FontEcModule;
+import com.dankai.latte.net.interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 public class ExampleApp extends Application {
@@ -21,6 +22,7 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
+                .withInterceptor(new DebugInterceptor("index", R.raw.test))
                 .withApiHost("http://10.0.2.2/")
                 .configure();
     }
