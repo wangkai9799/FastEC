@@ -18,9 +18,12 @@ import com.dankai.latte.net.callback.RequestCallbacks;
 import com.dankai.latte.ui.LatteLoader;
 import com.dankai.latte.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +38,7 @@ public class RestClient {
     private final IError ERROR;
     private final RequestBody BODY;
     private LoaderStyle LOADER_STYLE;
+    private final File FILE;
     private final Context CONTEXT;
 
     public RestClient(String url,
@@ -45,7 +49,8 @@ public class RestClient {
                       IError error,
                       RequestBody body,
                       Context context,
-                      LoaderStyle loaderStyle
+                      LoaderStyle loaderStyle,
+                      File file
     ) {
         this.URL = url;
         PARAMS.putAll(params);
@@ -56,6 +61,7 @@ public class RestClient {
         this.BODY = body;
         this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
+        this.FILE = file;
     }
 
     public static RestClientBuilder builder() {
@@ -91,6 +97,13 @@ public class RestClient {
                 break;
             case DELETE:
                 call = service.delete(URL, PARAMS);
+                break;
+            case UPLOAD:
+                final RequestBody requestBody =
+                        RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
+                final MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+                call = RestCreator.getRestService().upload(URL, body);
                 break;
             default:
                 break;
