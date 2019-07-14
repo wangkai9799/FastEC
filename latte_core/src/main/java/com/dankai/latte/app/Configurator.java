@@ -1,4 +1,4 @@
-package com.dankai.fastec.example;
+package com.dankai.latte.app;
 /*
  *  项目名:    FastEC
  *  包名：     com.dankai.fastec.latte_core.app
@@ -8,11 +8,17 @@ package com.dankai.fastec.example;
  *  描述：     配置文件的存储和获取
  */
 
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.WeakHashMap;
 
 public class Configurator {
 
-    private static final WeakHashMap<String, Object> LATTE_CONFIGS = new WeakHashMap<>();
+    private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
+    private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     private Configurator() {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);        //配置开始了，但是还没有完成
@@ -22,7 +28,7 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    final WeakHashMap<String, Object> getLatteConfigs() {
+    final HashMap<String, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
 
@@ -31,12 +37,27 @@ public class Configurator {
     }
 
     public final void configure() {
+        initIcons();
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);        //配置文件配置好了
     }
 
     public final Configurator withApiHost(String host) {
         LATTE_CONFIGS.put(ConfigType.API_HOST.name(), host);
         return this;
+    }
+
+    public final Configurator withIcon(IconFontDescriptor descriptor) {
+        ICONS.add(descriptor);
+        return this;
+    }
+
+    private void initIcons() {
+        if (ICONS.size() > 0) {
+            final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
+            for (int i = 0; i < ICONS.size(); i++) {
+                initializer.with(ICONS.get(i));
+            }
+        }
     }
 
     private void checkConfiguration() {

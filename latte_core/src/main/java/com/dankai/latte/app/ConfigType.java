@@ -1,4 +1,4 @@
-package com.dankai.fastec.example;
+package com.dankai.latte.app;
 /*
  *  项目名:    FastEC
  *  包名：     com.dankai.fastec.latte_core.app

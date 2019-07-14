@@ -1,4 +1,4 @@
-package com.dankai.fastec.example;
+package com.dankai.latte.app;
 /*
  *  项目名:    FastEC
  *  包名：     com.dankai.fastec.latte_core.app
@@ -10,7 +10,7 @@ package com.dankai.fastec.example;
 
 import android.content.Context;
 
-import java.util.WeakHashMap;
+import java.util.HashMap;
 
 public final class Latte {
 
@@ -19,8 +19,12 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
-    private static WeakHashMap<String, Object> getConfigurations() {
+    public static HashMap<String, Object> getConfigurations() {
         return Configurator.getInstance().getLatteConfigs();
+    }
+
+    public static Context getApplication() {
+        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
 
 }

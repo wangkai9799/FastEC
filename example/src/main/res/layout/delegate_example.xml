@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.joanzapata.iconify.widget.IconTextView
-        android:id="@+id/icon_test"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="{fa-coffee}"
+        android:text="example delegate"
         tools:ignore="HardcodedText" />
 
 </FrameLayout>
