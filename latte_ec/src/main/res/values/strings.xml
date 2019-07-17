@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">LatteEC</string>
+    <string name="delegate_sign_up">注册</string>
+    <string name="delegate_sign_up_name">姓名</string>
+    <string name="delegate_sign_up_email">邮箱</string>
+    <string name="delegate_sign_up_phone">手机号码</string>
+    <string name="delegate_sign_up_pwd">密码</string>
+    <string name="delegate_sign_up_re_pwd">重复密码</string>
+    <string name="delegate_sign_up_message">已经注册了？请登录</string>
+    <string name="delegate_sign_in">登录</string>
+    <string name="delegate_sign_in_message">还没有账户？现在注册吧</string>
 </resources>

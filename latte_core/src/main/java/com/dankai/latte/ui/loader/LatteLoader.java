@@ -1,4 +1,4 @@
-package com.dankai.latte.ui;
+package com.dankai.latte.ui.loader;
 /*
  *  项目名:    FastEC
  *  包名：     com.dankai.latte.ui
@@ -16,7 +16,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatDialog;
 
 import com.dankai.latte.R;
-import com.dankai.latte.util.DimenUtil;
+import com.dankai.latte.util.dimen.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

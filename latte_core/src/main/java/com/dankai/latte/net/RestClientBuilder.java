@@ -14,7 +14,7 @@ import com.dankai.latte.net.callback.IError;
 import com.dankai.latte.net.callback.IFailure;
 import com.dankai.latte.net.callback.IRequest;
 import com.dankai.latte.net.callback.ISuccess;
-import com.dankai.latte.ui.LoaderStyle;
+import com.dankai.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;

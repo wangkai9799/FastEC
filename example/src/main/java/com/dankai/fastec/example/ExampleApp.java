@@ -11,8 +11,10 @@ package com.dankai.fastec.example;
 import android.app.Application;
 
 import com.dankai.latte.app.Latte;
+import com.dankai.latte.ec.database.DatabaseManager;
 import com.dankai.latte.ec.icon.FontEcModule;
 import com.dankai.latte.net.interceptors.DebugInterceptor;
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 public class ExampleApp extends Application {
@@ -25,5 +27,16 @@ public class ExampleApp extends Application {
                 .withInterceptor(new DebugInterceptor("index", R.raw.test))
                 .withApiHost("http://10.0.2.2/")
                 .configure();
+        initStetho();
+        DatabaseManager.getInstance().init(this);
     }
+
+    private void initStetho() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this).enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build()
+        );
+    }
+
 }

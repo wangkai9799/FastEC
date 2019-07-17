@@ -10,7 +10,7 @@ package com.dankai.latte.net.interceptors;
 
 import androidx.annotation.RawRes;
 
-import com.dankai.latte.util.FileUtil;
+import com.dankai.latte.util.file.FileUtil;
 
 import org.jetbrains.annotations.NotNull;
 

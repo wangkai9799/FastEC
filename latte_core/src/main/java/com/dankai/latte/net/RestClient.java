@@ -16,8 +16,8 @@ import com.dankai.latte.net.callback.IRequest;
 import com.dankai.latte.net.callback.ISuccess;
 import com.dankai.latte.net.callback.RequestCallbacks;
 import com.dankai.latte.net.download.DownloadHandler;
-import com.dankai.latte.ui.LatteLoader;
-import com.dankai.latte.ui.LoaderStyle;
+import com.dankai.latte.ui.loader.LatteLoader;
+import com.dankai.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

@@ -17,7 +17,7 @@ import com.dankai.latte.net.callback.IError;
 import com.dankai.latte.net.callback.IFailure;
 import com.dankai.latte.net.callback.IRequest;
 import com.dankai.latte.net.callback.ISuccess;
-import com.dankai.latte.util.FileUtil;
+import com.dankai.latte.util.file.FileUtil;
 
 import java.io.File;
 import java.io.InputStream;

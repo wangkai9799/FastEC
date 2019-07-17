@@ -1,4 +1,4 @@
-package com.dankai.latte.util;
+package com.dankai.latte.util.dimen;
 /*
  *  项目名:    FastEC
  *  包名：     com.dankai.latte.util

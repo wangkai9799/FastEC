@@ -1,4 +1,4 @@
-package com.dankai.latte.ui;
+package com.dankai.latte.ui.loader;
 /*
  *  项目名:    FastEC
  *  包名：     com.dankai.latte.ui

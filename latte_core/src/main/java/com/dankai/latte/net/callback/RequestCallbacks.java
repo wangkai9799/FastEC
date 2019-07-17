@@ -10,8 +10,8 @@ package com.dankai.latte.net.callback;
 
 import android.os.Handler;
 
-import com.dankai.latte.ui.LatteLoader;
-import com.dankai.latte.ui.LoaderStyle;
+import com.dankai.latte.ui.loader.LatteLoader;
+import com.dankai.latte.ui.loader.LoaderStyle;
 
 
 import retrofit2.Call;
