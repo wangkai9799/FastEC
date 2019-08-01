@@ -10,5 +10,5 @@ package com.dankai.latte.ui.launcher;
 
 public enum OnLauncherFinishTag {
     SIGNED,
-    UNSIGNED
+    NOT_SIGNED
 }

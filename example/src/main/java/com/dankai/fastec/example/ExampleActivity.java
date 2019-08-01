@@ -9,9 +9,9 @@ import androidx.appcompat.app.ActionBar;
 import com.dankai.latte.activities.ProxyActivity;
 import com.dankai.latte.delegates.LatteDelegate;
 import com.dankai.latte.ec.launcher.LauncherDelegate;
+import com.dankai.latte.ec.main.EcBottomDelegate;
 import com.dankai.latte.ec.sign.ISignListener;
 import com.dankai.latte.ec.sign.SignInDelegate;
-import com.dankai.latte.ec.sign.SignUpDelegate;
 import com.dankai.latte.ui.launcher.ILauncherListener;
 import com.dankai.latte.ui.launcher.OnLauncherFinishTag;
 
@@ -30,12 +30,13 @@ public class ExampleActivity extends ProxyActivity implements
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new EcBottomDelegate();
     }
 
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
+        startWithPop(new EcBottomDelegate());
     }
 
     @Override
@@ -47,11 +48,11 @@ public class ExampleActivity extends ProxyActivity implements
     public void onLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag) {
             case SIGNED:
-                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_SHORT).show();
-                startWithPop(new ExampleDelegate());
+//                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_SHORT).show();
+                startWithPop(new EcBottomDelegate());
                 break;
-            case UNSIGNED:
-                Toast.makeText(this, "用户没登录", Toast.LENGTH_SHORT).show();
+            case NOT_SIGNED:
+                Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_SHORT).show();
                 startWithPop(new SignInDelegate());
                 break;
             default:

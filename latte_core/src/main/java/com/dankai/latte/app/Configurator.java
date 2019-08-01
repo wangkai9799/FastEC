@@ -8,6 +8,7 @@ package com.dankai.latte.app;
  *  描述：     配置文件的存储和获取
  */
 
+import android.app.Activity;
 import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -30,7 +31,7 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
-    public static Configurator getInstance() {
+    static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -80,6 +81,11 @@ public class Configurator {
     public final Configurator withInterceptor(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
         return this;
     }
 

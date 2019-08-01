@@ -56,7 +56,7 @@ dependencies {
     //Banner依赖
     implementation 'com.ms:Banner:2.3.16'
     //JSON依赖
-    implementation 'com.alibaba:fastjson:1.2.58'
+    implementation 'com.alibaba:fastjson:1.1.71.android'
     //Glide依赖
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
@@ -64,6 +64,10 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
     //SQLite
     implementation 'org.greenrobot:greendao:3.2.2'
+    //RecyclerView依赖
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+//    //微信功能
+//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:'
 
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
@@ -72,6 +76,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(path: ':latte_ec')
-    implementation project(path: ':latte_compiler')
+    annotationProcessor project(path: ':latte_compiler')
     implementation project(path: ':latte_core')
+    implementation project(path: ':latte_annotations')
 }

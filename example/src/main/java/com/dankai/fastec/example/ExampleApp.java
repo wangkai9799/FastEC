@@ -24,8 +24,8 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
-                .withApiHost("http://10.0.2.2/")
+                .withInterceptor(new DebugInterceptor("aaaaaaaaa", R.raw.test))
+                .withApiHost("http://10.0.2.2/Test/")
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);

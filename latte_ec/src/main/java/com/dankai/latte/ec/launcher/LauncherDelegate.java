@@ -93,7 +93,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                 @Override
                 public void onNotSignIn() {
                     if (mILauncherListener != null) {
-                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.UNSIGNED);
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
                     }
                 }
             });

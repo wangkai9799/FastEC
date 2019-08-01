@@ -9,8 +9,7 @@ package com.dankai.latte.app;
  */
 
 import android.content.Context;
-
-import java.util.logging.Handler;
+import android.os.Handler;
 
 public final class Latte {
 
