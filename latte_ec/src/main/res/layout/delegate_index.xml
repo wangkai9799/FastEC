@@ -21,7 +21,8 @@
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        app:layout_behavior="com.dankai.latte.ec.main.index.TranslucentBehavior">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

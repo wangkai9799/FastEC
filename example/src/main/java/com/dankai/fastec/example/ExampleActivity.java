@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 import com.dankai.latte.activities.ProxyActivity;
+import com.dankai.latte.app.Latte;
 import com.dankai.latte.delegates.LatteDelegate;
 import com.dankai.latte.ec.launcher.LauncherDelegate;
 import com.dankai.latte.ec.main.EcBottomDelegate;
@@ -14,6 +15,8 @@ import com.dankai.latte.ec.sign.ISignListener;
 import com.dankai.latte.ec.sign.SignInDelegate;
 import com.dankai.latte.ui.launcher.ILauncherListener;
 import com.dankai.latte.ui.launcher.OnLauncherFinishTag;
+
+import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity implements
         ISignListener,
@@ -26,6 +29,8 @@ public class ExampleActivity extends ProxyActivity implements
         if (actionBar != null) {
             actionBar.hide();
         }
+        Latte.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override

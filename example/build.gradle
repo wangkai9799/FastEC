@@ -66,6 +66,14 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2'
     //RecyclerView依赖
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+    //沉浸式状态栏
+    implementation ('com.github.niorgai:StatusBarCompat:2.3.3', {
+        exclude group: 'androidx.appcompat:appcompat'
+        exclude group: 'com.google.android.material:material'
+    })
+    //Google AutoValue
+    implementation "com.google.auto.value:auto-value-annotations:1.6.2"
+    annotationProcessor "com.google.auto.value:auto-value:1.6.2"
 //    //微信功能
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:'
 
