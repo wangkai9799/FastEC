@@ -17,5 +17,6 @@ public enum ConfigKeys {
     HANDLER,
     INTERCEPTOR,
     ACTIVITY,
-    JAVASCRIPT_INTERFACE
+    JAVASCRIPT_INTERFACE,
+    WEB_HOST
 }

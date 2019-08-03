@@ -15,6 +15,7 @@ import com.dankai.fastec.example.event.TestEvent;
 import com.dankai.latte.ec.database.DatabaseManager;
 import com.dankai.latte.ec.icon.FontEcModule;
 import com.dankai.latte.net.interceptors.DebugInterceptor;
+import com.dankai.latte.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -29,6 +30,9 @@ public class ExampleApp extends Application {
                 .withApiHost("http://10.0.2.2/Test/")
                 .withJavascriptInterface("latte")
                 .withWebEvent("test", new TestEvent())
+                //添加Cookie同步拦截器
+                .withWebHost("https://www.baidu.com/")
+                .withInterceptor(new AddCookieInterceptor())
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);
