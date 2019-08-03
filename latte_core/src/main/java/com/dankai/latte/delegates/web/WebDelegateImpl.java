@@ -16,12 +16,15 @@ import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
 
+import com.dankai.latte.delegates.IPageLoadListener;
 import com.dankai.latte.delegates.web.chromeclient.WebChromeClientImpl;
 import com.dankai.latte.delegates.web.client.WebViewClientImpl;
 import com.dankai.latte.delegates.web.route.RouteKeys;
 import com.dankai.latte.delegates.web.route.Router;
 
 public class WebDelegateImpl extends WebDelegate {
+
+    private IPageLoadListener mIPageLoadListener = null;
 
     public static WebDelegateImpl create(String url) {
         final Bundle args = new Bundle();
@@ -41,6 +44,10 @@ public class WebDelegateImpl extends WebDelegate {
         return getWebView();
     }
 
+    public void setPageLoadListener(IPageLoadListener listener) {
+        this.mIPageLoadListener = listener;
+    }
+
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         if (getUrl() != null) {
@@ -57,6 +64,7 @@ public class WebDelegateImpl extends WebDelegate {
     @Override
     public WebViewClient initWebViewClient() {
         final WebViewClientImpl client = new WebViewClientImpl(this);
+        client.setPageLoadListener(mIPageLoadListener);
         return client;
     }
 
