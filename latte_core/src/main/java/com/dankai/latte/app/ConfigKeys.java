@@ -16,5 +16,6 @@ public enum ConfigKeys {
     LOADER_DELAYED,
     HANDLER,
     INTERCEPTOR,
-    ACTIVITY
+    ACTIVITY,
+    JAVASCRIPT_INTERFACE
 }

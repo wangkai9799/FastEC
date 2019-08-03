@@ -11,6 +11,7 @@ package com.dankai.fastec.example;
 import android.app.Application;
 
 import com.dankai.latte.app.Latte;
+import com.dankai.fastec.example.event.TestEvent;
 import com.dankai.latte.ec.database.DatabaseManager;
 import com.dankai.latte.ec.icon.FontEcModule;
 import com.dankai.latte.net.interceptors.DebugInterceptor;
@@ -26,6 +27,8 @@ public class ExampleApp extends Application {
                 .withIcon(new FontEcModule())
                 .withInterceptor(new DebugInterceptor("aaaaaaaaa", R.raw.test))
                 .withApiHost("http://10.0.2.2/Test/")
+                .withJavascriptInterface("latte")
+                .withWebEvent("test", new TestEvent())
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);

@@ -8,6 +8,8 @@ package com.dankai.latte.ui.refresh;
  *  描述：     TODO
  */
 
+import android.util.Log;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -19,6 +21,7 @@ import com.dankai.latte.net.RestClient;
 import com.dankai.latte.net.callback.ISuccess;
 import com.dankai.latte.ui.recycler.DataConverter;
 import com.dankai.latte.ui.recycler.MultipleRecyclerAdapter;
+import com.dankai.latte.util.log.LatteLogger;
 
 public class RefreshHandler implements
         SwipeRefreshLayout.OnRefreshListener
