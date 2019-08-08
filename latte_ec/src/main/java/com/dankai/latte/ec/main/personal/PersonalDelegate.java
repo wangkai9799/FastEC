@@ -18,11 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dankai.latte.delegates.bottom.BottomItemDelegate;
 import com.dankai.latte.ec.R;
 import com.dankai.latte.ec.R2;
+import com.dankai.latte.ec.main.personal.address.AddressDelegate;
 import com.dankai.latte.ec.main.personal.list.ListAdapter;
 import com.dankai.latte.ec.main.personal.list.ListBean;
 import com.dankai.latte.ec.main.personal.list.ListItemType;
 import com.dankai.latte.ec.main.personal.order.OrderListDelegate;
 import com.dankai.latte.ec.main.personal.order.OrderRequestType;
+import com.dankai.latte.ec.main.personal.profile.UserProfileDelegate;
+import com.dankai.latte.ec.main.personal.settings.SettingsDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +82,11 @@ public class PersonalDelegate extends BottomItemDelegate {
         startOrderListByType();
     }
 
+    @OnClick(R2.id.img_user_avatar)
+    void onClickAvatar() {
+        getParentDelegate().start(new UserProfileDelegate());
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,12 +99,14 @@ public class PersonalDelegate extends BottomItemDelegate {
         final ListBean address = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
+                .setDelegate(new AddressDelegate())
                 .setText("收货地址")
                 .build();
 
         final ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
+                .setDelegate(new SettingsDelegate())
                 .setText("系统设置")
                 .build();
 
@@ -109,5 +119,6 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
 }

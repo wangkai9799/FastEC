@@ -10,14 +10,21 @@ package com.dankai.fastec.example;
 
 import android.app.Application;
 
+import androidx.annotation.Nullable;
+
 import com.dankai.latte.app.Latte;
 import com.dankai.fastec.example.event.TestEvent;
 import com.dankai.latte.ec.database.DatabaseManager;
 import com.dankai.latte.ec.icon.FontEcModule;
 import com.dankai.latte.net.interceptors.DebugInterceptor;
 import com.dankai.latte.net.rx.AddCookieInterceptor;
+import com.dankai.latte.util.callback.CallBackManager;
+import com.dankai.latte.util.callback.CallBackType;
+import com.dankai.latte.util.callback.IGlobalCallback;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class ExampleApp extends Application {
     @Override
@@ -36,6 +43,30 @@ public class ExampleApp extends Application {
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);
+        //开启极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+
+        CallBackManager.getInstance()
+                .addCallback(CallBackType.TAG_OPEN_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (JPushInterface.isPushStopped(Latte.getApplicationContext())) {
+                            //开启极光推送
+                            JPushInterface.setDebugMode(true);
+                            JPushInterface.init(Latte.getApplicationContext());
+                        }
+                    }
+                })
+                .addCallback(CallBackType.TAG_OPEN_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (!JPushInterface.isPushStopped(Latte.getApplicationContext())) {
+                            JPushInterface.stopPush(Latte.getApplicationContext());
+                        }
+                    }
+                });
+
     }
 
     private void initStetho() {

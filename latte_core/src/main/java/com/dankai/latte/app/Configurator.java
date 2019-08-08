@@ -13,6 +13,7 @@ import android.os.Handler;
 
 import androidx.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.dankai.latte.delegates.web.event.Event;
 import com.dankai.latte.delegates.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -53,6 +54,7 @@ public class Configurator {
         initIcons();
         Logger.addLogAdapter(new AndroidLogAdapter());
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);        //配置文件配置好了
+        Utils.init(Latte.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {

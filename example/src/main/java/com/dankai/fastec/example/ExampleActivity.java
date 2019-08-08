@@ -16,6 +16,7 @@ import com.dankai.latte.ec.sign.SignInDelegate;
 import com.dankai.latte.ui.launcher.ILauncherListener;
 import com.dankai.latte.ui.launcher.OnLauncherFinishTag;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity implements
@@ -34,6 +35,18 @@ public class ExampleActivity extends ProxyActivity implements
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+
+    @Override
     public LatteDelegate setRootDelegate() {
         return new EcBottomDelegate();
     }
@@ -41,7 +54,7 @@ public class ExampleActivity extends ProxyActivity implements
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
-        startWithPop(new EcBottomDelegate());
+//        startWithPop(new EcBottomDelegate());
     }
 
     @Override
@@ -53,7 +66,7 @@ public class ExampleActivity extends ProxyActivity implements
     public void onLauncherFinish(OnLauncherFinishTag tag) {
         switch (tag) {
             case SIGNED:
-//                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_SHORT).show();
                 startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
