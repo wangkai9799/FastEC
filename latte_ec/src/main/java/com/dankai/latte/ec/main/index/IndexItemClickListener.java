@@ -14,8 +14,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.dankai.latte.delegates.LatteDelegate;
 import com.dankai.latte.ec.detail.GoodsDetailDelegate;
-
-import retrofit2.http.DELETE;
+import com.dankai.latte.ui.recycler.MultipleFields;
+import com.dankai.latte.ui.recycler.MultipleItemEntity;
 
 public class IndexItemClickListener extends SimpleClickListener {
 
@@ -31,7 +31,9 @@ public class IndexItemClickListener extends SimpleClickListener {
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create();
+        final MultipleItemEntity entity = (MultipleItemEntity) baseQuickAdapter.getData().get(position);
+        final int goodsId = entity.getField(MultipleFields.ID);
+        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create(goodsId);
         DELEGATE.start(delegate);
     }
 

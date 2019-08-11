@@ -10,6 +10,7 @@ package com.dankai.latte.ec.main.index;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
@@ -24,13 +25,20 @@ import com.dankai.latte.delegates.bottom.BottomItemDelegate;
 import com.dankai.latte.ec.R;
 import com.dankai.latte.ec.R2;
 import com.dankai.latte.ec.main.EcBottomDelegate;
+import com.dankai.latte.ec.main.index.search.SearchDelegate;
 import com.dankai.latte.ui.recycler.BaseDecoration;
 import com.dankai.latte.ui.refresh.RefreshHandler;
+import com.dankai.latte.util.callback.CallBackManager;
+import com.dankai.latte.util.callback.CallBackType;
+import com.dankai.latte.util.callback.IGlobalCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import butterknife.BindView;
+import javax.security.auth.callback.Callback;
 
-public class IndexDelegate extends BottomItemDelegate {
+import butterknife.BindView;
+import butterknife.OnClick;
+
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
 
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView = null;
@@ -45,9 +53,24 @@ public class IndexDelegate extends BottomItemDelegate {
 
     private RefreshHandler mRefreshHandler = null;
 
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getParentDelegate());
+    }
+
+
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+        CallBackManager.getInstance()
+                .addCallback(CallBackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@Nullable String args) {
+                        //扫描得到的String文件
+                        Toast.makeText(getContext(), "得到的二维码是" + args, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        mSearchView.setOnFocusChangeListener(this);
     }
 
     private void initRefreshLayout() {
@@ -79,5 +102,12 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+            getParentDelegate().start(new SearchDelegate());
+        }
     }
 }

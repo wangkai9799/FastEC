@@ -11,6 +11,7 @@ package com.dankai.latte.util.callback;
 public enum CallBackType {
 
     ON_CROP,
+    ON_SCAN,
     TAG_OPEN_PUSH,
     TAG_STOP_PUSH
 

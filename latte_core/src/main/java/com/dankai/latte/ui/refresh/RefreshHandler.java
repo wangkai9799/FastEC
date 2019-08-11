@@ -8,8 +8,6 @@ package com.dankai.latte.ui.refresh;
  *  描述：     TODO
  */
 
-import android.util.Log;
-
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -21,7 +19,6 @@ import com.dankai.latte.net.RestClient;
 import com.dankai.latte.net.callback.ISuccess;
 import com.dankai.latte.ui.recycler.DataConverter;
 import com.dankai.latte.ui.recycler.MultipleRecyclerAdapter;
-import com.dankai.latte.util.log.LatteLogger;
 
 public class RefreshHandler implements
         SwipeRefreshLayout.OnRefreshListener
@@ -82,6 +79,37 @@ public class RefreshHandler implements
                 .get();
     }
 
+    private void paging(String url) {
+        final int pageSize = BEAN.getPageSize();
+        final int currentCount = BEAN.getCurrentCount();
+        final int total = BEAN.getTotal();
+        final int index = BEAN.getPageIndex();
+        if (mAdapter.getData().size() < pageSize || currentCount >= total) {
+
+        } else {
+            Latte.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestClient.builder()
+                            .url(url + index + ".php")
+                            .success(new ISuccess() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                    //累加数量
+                                    BEAN.setCurrentCount(mAdapter.getData().size());
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+                                }
+                            })
+                            .build()
+                            .get();
+
+                }
+            }, 1000);
+        }
+    }
+
     @Override
     public void onRefresh() {
         refresh();
@@ -90,6 +118,6 @@ public class RefreshHandler implements
     //上拉加载更多
     @Override
     public void onLoadMoreRequested() {
-
+        paging("refresh");
     }
 }

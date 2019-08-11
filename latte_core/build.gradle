@@ -94,6 +94,10 @@ dependencies {
     annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.5.0"
     //AndroidUtilCode
     implementation 'com.blankj:utilcodex:1.25.5'
+    //二维码扫描
+    implementation 'me.dm7.barcodescanner:zbar:1.9.13'
+    //View动画依赖
+    implementation 'com.daimajia.easing:library:2.1@aar'
 
 
     testImplementation 'junit:junit:4.12'

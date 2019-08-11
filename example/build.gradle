@@ -97,6 +97,10 @@ dependencies {
     //极光推送
     implementation 'cn.jiguang.sdk:jpush:3.0.1'
     implementation 'cn.jiguang.sdk:jcore:1.1.0'
+    //二维码扫描
+    implementation 'me.dm7.barcodescanner:zbar:1.9.13'
+    //View动画依赖
+    implementation 'com.daimajia.easing:library:2.1@aar'
 //    //微信功能
 //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:'
 
